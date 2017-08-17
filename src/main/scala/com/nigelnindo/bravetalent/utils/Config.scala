@@ -1,4 +1,4 @@
-package utils
+package com.nigelnindo.bravetalent.utils
 
 import com.typesafe.config.ConfigFactory
 
