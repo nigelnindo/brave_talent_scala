@@ -1,0 +1,89 @@
+# API spec in YAML
+swagger: '2.0'
+info:
+  title: Brave Talent API
+  description: Swagger docs for the brave talent test API
+  version: "1.0.0"
+# the domain of the service
+host:  188.226.159.24:9000
+# array of all schemes that your API supports
+schemes:
+  - http
+# will be prefixed to all paths
+basePath: /api
+produces:
+  - application/json
+paths:
+  /extractor:
+    get:
+      summary: Extract number plate.
+      description: |
+        Provide a sentence and the extractor will get the number plate from it. If there is no number plate, the route returns 'NO PLATE'.
+        Will not detect a number plate if there is no spacing between the prefix and suffix i.e 'KBA123A'
+      parameters:
+        - name: sentence
+          in: query
+          description: Sentence from which to extract the number plate.
+          required: true
+          type: string
+      tags:
+        - Extraction
+      responses:
+        200:
+          description: Will return a 200 response if whether it detected a number plate in the sentence or not. You either get back a number plate i.e 'KBA 123A' or  'NO PLATE'.
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ExtractorResult'
+        default:
+          description: Request Error
+          schema:
+            $ref: '#/definitions/Error'
+  /difference:
+    get:
+      summary: Difference between number plates.
+      description: |
+        Takes two number plates and gets the difference between the largest and the smallest of the two.
+        Will not detect a number plate if there is no spacing between the prefix and suffix i.e 'KBA123A'
+      parameters:
+        - name: firstPlate
+          in: query
+          description: A number plate, or sentence containing a number plate.
+          required: true
+          type: string
+        - name: secondPlate
+          in: query
+          description: A number plate, or sentence containing a number plate.
+          required: true
+          type: string
+      tags:
+        - Counting
+      responses:
+        200:
+          description: Result of successfully getting the difference between the number plates.
+          schema:
+            $ref: '#/definitions/CounterResult'
+        default:
+          description: Request Error
+          schema:
+            $ref: '#/definitions/Error'
+definitions:
+  ExtractorResult:
+    type: object
+    properties:
+      result:
+        type: string
+        description: The extracted number plate.
+  CounterResult:
+    type: object
+    properties:
+      result:
+        type: number
+        description: The difference between the two numbers
+  Error:
+    type: object
+    properties:
+      message:
+        type: string
+        description: Reason why the server rejected the request
+
