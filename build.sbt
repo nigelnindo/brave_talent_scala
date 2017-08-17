@@ -17,6 +17,8 @@ libraryDependencies ++= {
   )
 }
 
+assemblyJarName in assembly := s"bravetalent.jar"
+
 assemblyMergeStrategy in assembly := {
   case PathList(ps@_*) if ps.last endsWith ".class" => MergeStrategy.first
   case PathList(ps@_*) if ps.last endsWith ".java" => MergeStrategy.first
