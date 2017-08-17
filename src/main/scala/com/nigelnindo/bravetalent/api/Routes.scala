@@ -1,10 +1,16 @@
 package com.nigelnindo.bravetalent.api
 
 import akka.actor.ActorSystem
+import akka.http.scaladsl.marshalling.ToResponseMarshallable
 import akka.http.scaladsl.server.Directives._
-import akka.http.scaladsl.server.directives.ParameterDirectives
+import com.nigelnindo.bravetalent.api.model.{CounterResponse, ExtractorResponse}
+import com.nigelnindo.bravetalent.plate.{Counter, Extractor}
+
 //import akka.http.scaladsl.model.HttpEntity
 import akka.http.scaladsl.model.ContentTypes
+import akka.http.scaladsl.marshallers.sprayjson.SprayJsonSupport._
+
+import com.nigelnindo.bravetalent.api.JsonProtocols._
 
 import akka.stream.Materializer
 
@@ -31,14 +37,14 @@ trait Routes {
       pathPrefix("extractor"){
         get {
           parameter('sentence.as[String]){ sentence =>
-            complete(sentence)
+            complete(ToResponseMarshallable(ExtractorResponse(Extractor.extract(sentence).toString)))
           }
         }
       } ~
       pathPrefix("difference"){
         get {
           parameters('firstPlate.as[String], 'secondPlate.as[String]) { (first,second) =>
-            complete(first + second)
+            complete(ToResponseMarshallable(CounterResponse(Counter.getDifference(first,second))))
           }
         }
       }
