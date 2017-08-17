@@ -64,6 +64,6 @@ $ sbt test
 
 ## Deployment
 
-Deployment process for Scala is similar to the [Python](https://github.com/nigelnindo/brave_talent_python) and [Java](https://github.com/nigelnindo/brave_talent_java) projects. Difference between Java and Scala is that we build the fat jar while building the Docker image. In Java, we use an already compiled jar file.
+Deployment process for Scala is similar to the [Python](https://github.com/nigelnindo/brave_talent_python) and [Java](https://github.com/nigelnindo/brave_talent_java) projects. 
 
 [Deployment 1](https://github.com/nigelnindo/brave_talent_java/blob/develop/deployment_1.png) outlines the build process from local to DockerHub, and [Deployment 2](https://github.com/nigelnindo/brave_talent_java/blob/develop/deplyoment_2.png) outlines the build process from DockerHub to the a client connection.
