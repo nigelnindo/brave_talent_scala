@@ -5,7 +5,7 @@ info:
   description: Swagger docs for the brave talent test API
   version: "1.0.0"
 # the domain of the service
-host:  188.226.159.24:9000
+host:  188.226.159.24:9002
 # array of all schemes that your API supports
 schemes:
   - http

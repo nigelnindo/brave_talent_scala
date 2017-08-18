@@ -4,7 +4,7 @@ Scala Project for Brave Talent developer test.
 
 ## REST API 
 
-The `host` and `port` for the Java API is `188.226.159.24:9000`
+The `host` and `port` for the Java API is `188.226.159.24:9002`
 
 ### API Documentation
 
@@ -14,13 +14,13 @@ Copy [the contents](https://github.com/nigelnindo/brave_talent_scala/blob/master
 
 ```shell
 # Extract a number plate from a sentence 
-$ curl -X GET "http://188.226.159.24:9000/api/extractor?sentence=Ken%20had%20a%20KCA%20001a%20yesterday." -H "accept: application/json"
+$ curl -X GET "http://188.226.159.24:9002/api/extractor?sentence=Ken%20had%20a%20KCA%20001a%20yesterday." -H "accept: application/json"
 
 # JSON result from API call
 {"result":"KCA 001A"}
 
 # Get the Difference between two number plates
-$ curl -X GET "http://188.226.159.24:9000/api/difference?firstPlate=KAZ%20999Z&secondPlate=KBA%20001A" -H "accept: application/json"
+$ curl -X GET "http://188.226.159.24:9002/api/difference?firstPlate=KAZ%20999Z&secondPlate=KBA%20001A" -H "accept: application/json"
 
 # JSON result from API call
 {"result":1}
@@ -42,7 +42,7 @@ $ docker pull nigelnindo/brave-talent-scala
 $ docker run -d -p 9000:9000 nigelnindo/brave-talent-scala
 ```
 
-Visit localhost:8080 on your browser.
+Visit localhost:9000 on your browser.
 
 ## Build from Source
 
